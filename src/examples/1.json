@@ -1,0 +1,19 @@
+{
+    "notebook": "@harrislapiroff/mwra-wastewater-data",
+    "cells": [
+        {
+            "name": "chart",
+            "x": 0,
+            "y": 0,
+            "width": 800,
+            "height": 500
+        },
+        {
+            "name": "viewof brush",
+            "x": 0,
+            "y": 510,
+            "width": 800,
+            "height": 80
+        }
+    ]
+}
