@@ -1,25 +1,7 @@
 import { Runtime, Inspector } from '@observablehq/runtime'
-import { forwardRef, useEffect, useState, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
-const Cell = forwardRef(({
-    height = 'auto',
-    width = 'auto',
-    column = 1,
-    row = 1,
-    columnSpan = 1,
-    rowSpan = 1,
-}, ref) => {
-    return <div
-        style={{
-            overflow: 'auto',
-            height,
-            width,
-            gridColumn: `${column} / span ${columnSpan}`,
-            gridRow: `${row} / span ${columnSpan}`,
-        }}
-        ref={ref}
-    />
-})
+import Cell from './Cell.js'
 
 export default function Dashboard({ config }) {
     useEffect(() => {

@@ -1,13 +1,11 @@
-import { useEffect, useState } from 'react';
-import './App.css';
-import Dashboard from './Dashboard';
+import Editor from './components/Editor/Editor'
 
 const exampleConfig = require('./examples/1.json')
 
 function App() {
   return (
     <div>
-      <Dashboard config={exampleConfig} />
+      <Editor config={exampleConfig} />
     </div>
   );
 }
