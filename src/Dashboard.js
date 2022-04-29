@@ -1,16 +1,21 @@
 import { Runtime, Inspector } from '@observablehq/runtime'
 import { forwardRef, useEffect, useState, useRef } from 'react'
 
-const Cell = forwardRef(({ x, y, height, width }, ref) => {
+const Cell = forwardRef(({
+    height = 'auto',
+    width = 'auto',
+    column = 1,
+    row = 1,
+    columnSpan = 1,
+    rowSpan = 1,
+}, ref) => {
     return <div
         style={{
-            position: 'absolute',
             overflow: 'auto',
-            top: y,
-            left: x,
             height,
             width,
-            border: '1px solid #CCC',
+            gridColumn: `${column} / span ${columnSpan}`,
+            gridRow: `${row} / span ${columnSpan}`,
         }}
         ref={ref}
     />
@@ -32,13 +37,27 @@ export default function Dashboard({ config }) {
     const cellRefs = useRef(new Map())
 
     return (
-        <div style={{ position: 'relative' }}>
+        <div style={{
+            display: 'grid',
+            columnGap: config.grid.columnGap,
+            rowGap: config.grid.rowGap,
+        }}>
             {config.cells.map(
-                ({ name, x, y, height, width }) => <Cell
-                    x={x}
-                    y={y}
+                ({
+                    name,
+                    height,
+                    width,
+                    column,
+                    columnSpan,
+                    row,
+                    rowSpan,
+                }) => <Cell
                     height={height}
                     width={width}
+                    column={column}
+                    columnSpan={columnSpan}
+                    row={row}
+                    rowSpan={rowSpan}
                     key={name}
                     ref={el => cellRefs.current.set(name, el)}
                 />
