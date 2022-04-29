@@ -1,6 +1,20 @@
+import { Runtime, Inspector } from '@observablehq/runtime'
+import { useState, useEffect } from "react"
 import Dashboard from "../Dashboard"
 
 export default function Editor({ config }) {
+    useEffect(() => {
+        let dispose = () => {}
+        (async () => {
+            const notebookUrl = `https://api.observablehq.com/${config.notebook}.js?v=3`
+            const { default: notebook } = await import(/* webpackIgnore: true */notebookUrl)
+            const runtime = new Runtime()
+            const module = runtime.module(notebook)
+            dispose = d => runtime.dispose()
+        })()
+        return () => dispose()
+    }, [config])
+
     return (
         <div className="flex h-screen">
             <div className="bg-slate-50 border-r border-slate-300 p-5 w-64 shrink-0">
