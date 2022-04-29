@@ -3,6 +3,8 @@ import { useState, useEffect } from "react"
 import Dashboard from "../Dashboard"
 
 export default function Editor({ config }) {
+    const [module, setModule] = useState()
+
     useEffect(() => {
         let dispose = () => {}
         (async () => {
@@ -10,6 +12,7 @@ export default function Editor({ config }) {
             const { default: notebook } = await import(/* webpackIgnore: true */notebookUrl)
             const runtime = new Runtime()
             const module = runtime.module(notebook)
+            setModule(module)
             dispose = d => runtime.dispose()
         })()
         return () => dispose()
