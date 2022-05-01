@@ -7,17 +7,31 @@
     "cells": [
         {
             "name": "chart",
-            "column": 1
+            "rowSpan": 3
         },
         {
-            "name": "mapAndLegend",
+            "name": "viewof scaleType",
+            "column": 2
+        },
+        {
+            "name": "viewof systems",
             "column": 2,
-            "row": 1
+            "row": 2
+        },
+        {
+            "name": "viewof accompanyingData",
+            "column": 2,
+            "row": 3
         },
         {
             "name": "viewof brush",
             "column": 1,
-            "row": 2,
+            "row": 4,
+            "columnSpan": 2
+        },
+        {
+            "name": "mapAndLegend",
+            "row": 5,
             "columnSpan": 2
         }
     ]

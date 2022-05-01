@@ -14,7 +14,7 @@ export default forwardRef(({
             height,
             width,
             gridColumn: `${column} / span ${columnSpan}`,
-            gridRow: `${row} / span ${columnSpan}`,
+            gridRow: `${row} / span ${rowSpan}`,
         }}
         ref={ref}
     />
