@@ -5,7 +5,7 @@ const exampleConfig = require('./examples/1.json')
 function App() {
   return (
     <div>
-      <Editor config={exampleConfig} />
+      <Editor />
     </div>
   );
 }

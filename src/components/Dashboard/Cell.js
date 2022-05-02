@@ -7,8 +7,10 @@ export default forwardRef(({
     row = 1,
     columnSpan = 1,
     rowSpan = 1,
+    selected = false,
 }, ref) => {
     return <div
+        className={`p-2 rounded-md border-2 ${selected ? 'border-slate-500' : 'border-white'}`}
         style={{
             overflow: 'auto',
             height,
