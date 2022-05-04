@@ -4,6 +4,7 @@ import useLocalStorage from '../../utils/useLocalStorage'
 import Dashboard from "../Dashboard"
 import Cell from '../Dashboard/Cell'
 import CellInspector from './CellInspector'
+import GridInspector from './GridInspector'
 
 const exampleConfig = require('../../examples/1.json')
 
@@ -36,7 +37,7 @@ export default function Editor() {
             .filter(([name, _]) => !module._runtime._builtin._scope.has(name)) :
         []
 
-    const selectedCellConfig = selectedCell ? config.cells.find(d => d.name === selectedCell) : null
+    const selectedCellConfig = selectedCell ? config.cells.find(d => d.name === selectedCell) : {}
     
     return (
         <div className="flex h-screen">
@@ -89,16 +90,9 @@ export default function Editor() {
                     })}
                 </Dashboard>
             </div>
-            <div className="border-slate-300 p-5 border-l w-64 shrink-0 overflow-auto">
-                <div className="mb-5">
-                    <h2 className="font-semibold">Grid</h2>
-                    Columns: {config.grid.columns || 'auto'}<br />
-                    Rows: {config.grid.rows || 'auto'}<br />
-                    Column gap: {config.grid.columnGap}<br />
-                    Row gap: {config.grid.rowGap}<br />
-                </div>
-
-                {selectedCell && <CellInspector config={selectedCellConfig} />}
+            <div className="border-slate-300 border-l w-64 shrink-0 overflow-auto">
+                <GridInspector config={config.grid} />
+                {selectedCellConfig && <CellInspector config={selectedCellConfig} />}
             </div>
         </div>
     )

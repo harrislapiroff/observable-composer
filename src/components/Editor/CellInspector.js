@@ -1,3 +1,5 @@
+import SidebarSection from "../SidebarSection"
+
 const EDITABLE_ATTRIBUTES = [
     ['Column', 'column'],
     ['Row', 'row'],
@@ -6,12 +8,10 @@ const EDITABLE_ATTRIBUTES = [
 ]
 
 export default function CellInspector({ config }) {
-
-    return <div>
-        <h2 class="font-bold">{config.name}</h2>
-        {EDITABLE_ATTRIBUTES.map(([label, key]) => <div>
-            <label for={`cell-inspector-input-${key}`}>{label}</label>
-            <input className="border rounded-sm p-1" type="number" value={config[key]} disabled />
+    return <SidebarSection title={`Cell: ${config.name}`}>
+        {EDITABLE_ATTRIBUTES.map(([label, key]) => <div key={key}>
+            <label htmlFor={`cell-inspector-input-${key}`}>{label}</label>
+            <input id={`cell-inspector-input-${key}`} className="border rounded-sm p-1" type="number" value={config[key]} disabled />
         </div>)}
-    </div>
+    </SidebarSection>
 }
