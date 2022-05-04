@@ -1,5 +1,7 @@
-import { Runtime, Inspector, Library } from '@observablehq/runtime'
+import { Runtime, Inspector } from '@observablehq/runtime'
 import { useState, useEffect, useRef } from "react"
+import { produce } from "immer"
+
 import useLocalStorage from '../../utils/useLocalStorage'
 import Dashboard from "../Dashboard"
 import Cell from '../Dashboard/Cell'
@@ -38,7 +40,12 @@ export default function Editor() {
         []
 
     const selectedCellConfig = selectedCell ? config.cells.find(d => d.name === selectedCell) : {}
-    
+
+    const handleGridChange = (key, val) => setConfig(produce(config, c => { c.grid[key] = val }))
+    const handleCellChange = (key, val) => setConfig(produce(config, c => {
+        c.cells.find(c => c.name === selectedCell)[key] = val
+    }))
+
     return (
         <div className="flex h-screen">
             <div className="border-r border-slate-300 p-5 w-64 shrink-0 overflow-auto">
@@ -91,8 +98,8 @@ export default function Editor() {
                 </Dashboard>
             </div>
             <div className="border-slate-300 border-l w-64 shrink-0 overflow-auto">
-                <GridInspector config={config.grid} />
-                {selectedCellConfig && <CellInspector config={selectedCellConfig} />}
+                <GridInspector config={config.grid} onConfigChange={handleGridChange} />
+                {selectedCell && selectedCellConfig && <CellInspector config={selectedCellConfig} onConfigChange={handleCellChange} />}
             </div>
         </div>
     )
