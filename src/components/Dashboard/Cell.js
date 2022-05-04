@@ -10,7 +10,7 @@ export default forwardRef(({
     selected = false,
 }, ref) => {
     return <div
-        className={`p-2 rounded-md border-2 ${selected ? 'border-slate-500' : 'border-white'}`}
+        className={`bg-white p-2 rounded-md border-2 ${selected ? 'border-slate-500' : 'border-white'}`}
         style={{
             overflow: 'auto',
             height,
